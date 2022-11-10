@@ -8,12 +8,14 @@ int main()
     double epsula;
     double x;
 
-    epsula = setValue("epsula");
+    do
+    {
+        epsula = setValue("epsula");
+    } while (epsula < 0);
 
     do
     {
-        cout << "Please, enter x = ";
-        cin >> x;
+        x = setValue("x");
     } while (x <= 0.0 || x == 4.0);
 
     double t = sqrt(x) / 2;
@@ -24,31 +26,45 @@ int main()
     double a = 1;
     double halfX = x / 2;
 
-    func -= a;
+    //func -= a;
 
-    if (abs(func) >= epsula)
+    /*if (abs(func - a) >= epsula)
     {
         cout << "i = " << i << endl;
         return 0;
-    }
-
-    //while (abs(func) < epsula)
-    //{
-    //    /*if (abs(func) >= epsula)
-    //        break;*/
-    //    i++;
-    //    a = a * halfX * i / (2 * i - 1);
-    //    func = func - a;
-    //    cout << "i = " << i << endl;
-    //}
-
-    do
+    }*/
+        // Here
+    /*do
     {
         i++;
         a = a * halfX * i / (2 * i - 1);
         func -= a;
         cout << "i = " << i << endl;
-    } while (abs(func) < epsula);
+    } while (abs(func) < epsula);*/
+
+    if (abs(func - a) >= epsula)
+    {
+        cout << "i = " << i << endl;
+        return 0;
+    }
+    else
+    {
+        while (abs(func) < epsula)
+        {
+            func = func - a;
+            i++;
+            a = a * halfX * i / (2 * i - 1);
+            cout << "i = " << i << endl;
+        }
+
+        //do
+        //{
+        //    func = func - a;
+        //    i++;
+        //    a = a * halfX * i / (2 * i - 1);
+        //    cout << "i = " << i << endl;
+        //} while (abs(func) < epsula);
+    }
 }
 
 double setValue(const char v[])
@@ -73,3 +89,14 @@ double setValue(const char v[])
     return value;
 }
 
+
+
+//while (abs(func) < epsula)
+//{
+//    /*if (abs(func) >= epsula)
+//        break;*/
+//    i++;
+//    a = a * halfX * i / (2 * i - 1);
+//    func = func - a;
+//    cout << "i = " << i << endl;
+//}
